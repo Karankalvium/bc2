@@ -4,10 +4,8 @@ const dotenv = require('dotenv');
 const restaurantRoutes = require('./routes/hotel.routes.js');
 const itemRoutes = require('./routes/item.routes.js');
 
-dotenv.config();
-
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 // Middleware
 app.use(express.json());
@@ -18,9 +16,11 @@ app.use('/item', itemRoutes);
 
 // MongoDB Connection
 mongoose
-  .connect(process.env.MONGO_URL, {})
+  .connect(//add ur database code)
+    
   .then(() => {
     console.log('Connected to MongoDB');
     app.listen(PORT, () => console.log(`Server running on port  http://localhost:${PORT}`));
   })
+  
   .catch((error) => console.error('MongoDB connection error:', error));
